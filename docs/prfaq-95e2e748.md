@@ -1,38 +1,64 @@
-# Amazon Announces NetGuard: The Automated Guardrail for Enterprise Network Compliance and Drift Detection
+# DriftGuard: The Future of Network Configuration Integrity
 
 ## Press Release
 
-SEATTLE—Oct. 24, 2023—Today, Amazon announced the launch of Amazon NetGuard, a revolutionary network integrity service designed to eliminate configuration drift and manual auditing overhead for global enterprise networks.\nFor years, Network Architects and Operations teams at Fortune 500 companies have struggled with 'configuration drift'—the silent accumulation of unauthorized changes that lead to security vulnerabilities and intermittent outages. Traditional manual audits using SSH take dozens of hours per week and are often plagued by 'false positives' caused by dynamic data like timestamps or routing updates.\nAmazon NetGuard solves these challenges by providing a centralized 'Source of Truth' that automatically compares live device configurations against standardized 'Golden Configs' via management APIs. By utilizing advanced Regex-based masking, NetGuard filters out the noise of dynamic variables, allowing engineers to focus only on genuine risks.\n'Before NetGuard, our team spent twenty hours a week just trying to figure out which devices were out of compliance. It was a needle in a haystack problem,' said a Senior Network Principal at a global logistics firm. 'Now, we have a 100% visible health score for our entire fleet in minutes. The ability to mask timestamps means our alerts are finally meaningful again.'\nAmazon NetGuard works by integrating directly with existing network management platforms. Architects define 'Golden Configurations' and 'Masking Profiles' for their fleet. The service then executes scheduled or on-demand audits, generating detailed delta reports that highlight exactly what changed, when it changed, and how to fix it. For engineers in the field, a 'Pre-Flight Check' tool provides a line-by-line diff in under 30 seconds, ensuring no change is made on an unstable device.\nAmazon NetGuard is available starting today for all enterprise customers looking to modernize their network operations and achieve true compliance at scale.\nTo learn more and start your first fleet audit, visit aws.amazon.com/netguard.
+Amazon Launches DriftGuard: Automated Compliance for Large-Scale Network Infrastructure
+
+Eliminate 95% of false-positive configuration alerts and reduce manual auditing time by 80% with API-driven drift detection.
+
+Seattle, WA -- October 15, 2025
+
+Large-scale enterprise network teams, ranging from Fortune 500 architects to regional NOC engineers, who are tasked with maintaining thousands of 'Golden Configurations' across global data centers and campus networks.
+
+Network teams are drowning in 'configuration drift'—unauthorized or accidental changes that lead to intermittent outages. Current manual SSH audits take over 20 hours per week and are plagued by 95% false-positive rates due to dynamic data like timestamps, making root-cause analysis nearly impossible.
+
+DriftGuard is an API-driven auditing platform that automates fleet-wide configuration checks. By using sophisticated variable masking, it filters out the noise of dynamic data, allowing engineers to identify real drift in under 30 seconds and providing a historical record of every change.
+
+Before DriftGuard, my team spent over 20 hours a week on manual SSH audits and was constantly distracted by false positives from simple timestamps. Now, we've eliminated 95% of that noise and finally have 100% visibility into our fleet's compliance for the CISO.
+
+The product operates in three phases. First, architects define a 'Golden Config' and set regex-based masking rules to ignore dynamic data like BGP IPs. Second, the tool connects to management APIs to pull 'running-configs' from up to 4,000 devices simultaneously. Finally, it generates a side-by-side diff and a fleet-wide compliance health score, logging every deviation.
+
+DriftGuard will be available starting October 2025 via the AWS Marketplace and as a standalone enterprise CLI tool for on-premises deployments.
+
+Visit our website to schedule a demo and learn how to secure your first 100 devices for free.
 
 ## Customer FAQ
 
-### How does NetGuard handle false positives like timestamps or dynamic IP addresses?
+### Who is this for?
 
-Standard diff tools flag every change, including harmless system-generated data like timestamps, uptime, or dynamic BGP peering IPs. Amazon NetGuard uses customizable Regex-based 'Masking Profiles' that allow you to define what data should be ignored, ensuring you only receive alerts for actual unauthorized configuration changes.
+This is designed for Scale-Oriented Architects managing thousands of devices, Resource-Constrained Operators performing daily changes, and Operational Auditors requiring clear compliance trails. It serves anyone responsible for the reliability and security of large-scale networks.
 
-### Does this require me to give the tool SSH access to every single device?
+### What problem does it solve?
 
-NetGuard is designed for the modern enterprise. Instead of slow, manual SSH connections that can trigger security alarms or bog down device CPUs, it integrates directly with your existing Management APIs (like Cisco DNA Center, Arista CloudVision, or Juniper Mist) to pull configurations at scale.
+It solves the problem of 'configuration drift' where manual changes or dynamic data like timestamps create a gap between the intended 'Golden Config' and reality. It eliminates the 20+ hours per week spent on manual audits and reduces the 95% of false-positive alerts caused by non-functional data variations.
 
-### Can I use this to investigate an outage that happened yesterday?
+### How is this different from alternatives?
 
-Yes. NetGuard maintains a versioned history of every drift event. If a switch fails, you can look back at the historical logs to see exactly what line changed, when it happened, and what the 'Golden Config' should have been, cutting your troubleshooting time in half.
+Unlike traditional SSH-based scripts or manual diffing, DriftGuard uses management APIs for speed and safety. It features advanced regex-based masking to ignore dynamic variables like BGP peer IPs and timestamps, ensuring you only see changes that actually matter.
 
-### I manage legacy 'snowflake' devices. How does this help me before I make a manual change?
+### What does this mean in practice?
 
-NetGuard includes a 'Pre-Flight Check' feature. Before you type a single command, you can run a 30-second scan to see if the device is already out of sync. This ensures you aren't building new configurations on top of a 'snowflake' or broken foundation.
+In practice, it means moving from 'guessing' to 'knowing.' Before an engineer makes a change, they run a 30-second pre-check to ensure no 'snowflakes' exist. After the change, a post-check confirms only intended lines were modified. For the architect, it provides a fleet-wide compliance score automatically.
+
+### Does this help with quarterly compliance audits?
+
+Yes. The tool captures historical logs of every drift event, including side-by-side comparisons of 'Expected' vs 'Actual', which can be exported as PDFs for quarterly reports.
 
 ## Internal FAQ
 
-### What is the technical limitation of API-only integration for the V1 launch?
+### Why will customers adopt this?
 
-The initial release targets REST-based Management APIs to ensure maximum stability and speed. We have a roadmap to support direct SSH/Netconf for legacy environments in Q3, but our primary go-to-market focuses on API-managed fleets.
+Adoption will be driven by the immediate 80% reduction in time spent on manual audits and the ability to prevent outages caused by configuration drift. The low-friction API integration means they don't have to overhaul their security posture to start seeing value.
 
-### How does the system handle the performance load of auditing 4,000+ devices?
+### What is the must-win use case?
 
-NetGuard uses an asynchronous polling architecture. For a 4,000-device fleet, a full audit takes less than 15 minutes, compared to the 20+ hours of manual labor it replaces. It minimizes load on management controllers by staggering requests.
+The must-win use case is Automated Fleet-Wide Drift Auditing with Dynamic Masking. Successfully auditing 4,000+ devices while masking 95% of false-positive noise is the 'killer app' that justifies the enterprise investment.
 
-### Are there any security concerns with storing device configurations in a centralized tool?
+### What are the key risks?
 
-Since NetGuard only reads and stores configuration text files—and specifically masks PII/Dynamic data—the risk is low. However, all data is encrypted at rest and in transit, and we support Role-Based Access Control (RBAC) to ensure only authorized auditors can view sensitive config blobs.
+Key risks include the performance impact on management APIs during bulk pulls and the complexity of user-defined regex. We will mitigate this by implementing intelligent rate-limiting and providing a library of pre-built masking templates for common variables.
+
+### How do we measure success?
+
+Success is measured by a 50% decrease in configuration-related troubleshooting time, a 95% reduction in false-positive compliance alerts, and achieving 100% visibility for the CISO across all managed network assets.
 
